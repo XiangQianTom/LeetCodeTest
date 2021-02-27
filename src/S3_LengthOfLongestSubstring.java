@@ -24,7 +24,7 @@ import java.util.*;
  * 链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class LengthOfLongestSubstring_3 {
+public class S3_LengthOfLongestSubstring {
 
     public static void main(String[] args) {
         Solution1 solution = new Solution1();
