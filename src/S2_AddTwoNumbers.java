@@ -1,3 +1,5 @@
+import utils.ListNode;
+
 public class S2_AddTwoNumbers {
     /**
      * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
@@ -21,25 +23,14 @@ public class S2_AddTwoNumbers {
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        ListNode l1 = getListNode(new int[]{2, 4, 3});
-        ListNode l2 = getListNode(new int[]{5, 6, 4});
+        ListNode l1 = ListNode.getListNode(new int[]{2, 4, 3});
+        ListNode l2 = ListNode.getListNode(new int[]{5, 6, 4});
 
         ListNode temp = solution.addTwoNumbers2(l1, l2);
         while (temp.next != null) {
             System.out.println(temp.val);
             temp = temp.next;
         }
-    }
-
-    private static ListNode getListNode(int[] arr) {
-        ListNode listNode = new ListNode();
-        ListNode temp = listNode;
-        for (int i = 0; i < arr.length; i++) {
-            temp.val = arr[i];
-            temp.next = new ListNode();
-            temp = temp.next;
-        }
-        return listNode;
     }
 
     static class Solution {
@@ -89,23 +80,6 @@ public class S2_AddTwoNumbers {
 
         private boolean hasNext(ListNode l1, ListNode l2, int base) {
             return null != l1 || null != l2 || 0 != base;
-        }
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
         }
     }
 }
