@@ -28,22 +28,62 @@ public class S21_MergeTwoLists {
      */
     public static void main(String[] args) {
         Solution solution = new Solution();
-        ListNode l1 = ListNode.getListNode(new int[]{1, 2, 4});
+        ListNode l1 = ListNode.getListNode(new int[]{1, 2, 4, 5});
         ListNode l2 = ListNode.getListNode(new int[]{1, 3, 4});
-        ListNode listNode = solution.mergeTwoLists(null, null);
-        while (listNode.next != null) {
+        ListNode listNode = solution.mergeTwoLists(l1, l2);
+        while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;
         }
-        System.out.println(listNode.val);
     }
 
     static class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-            boolean isNull = isNull(l1, l2);
-            ListNode listNode = isNull ? null : new ListNode();
-            mergeTwoLists(l1, l2, listNode, isNull);
-            return listNode;
+            ListNode listNode = new ListNode();
+            mergeTwoLists(l1, l2, listNode);
+            return listNode.next;
+        }
+
+        public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
+            // 类似归并排序中的合并过程
+            ListNode dummyHead = new ListNode(0);
+            ListNode cur = dummyHead;
+            while (l1 != null && l2 != null) {
+                if (l1.val < l2.val) {
+                    cur.next = l1;
+                    cur = cur.next;
+                    l1 = l1.next;
+                } else {
+                    cur.next = l2;
+                    cur = cur.next;
+                    l2 = l2.next;
+                }
+            }
+            // 任一为空，直接连接另一条链表
+            if (l1 == null) {
+                cur.next = l2;
+            } else {
+                cur.next = l1;
+            }
+            return dummyHead.next;
+        }
+
+        private ListNode mergeTwoLists(ListNode l1, ListNode l2, ListNode targetNode) {
+            if (null == l1) {
+                targetNode.next = l2;
+                return targetNode;
+            }
+            if (null == l2) {
+                targetNode.next = l1;
+                return targetNode;
+            }
+            if (l1.val < l2.val) {
+                targetNode.next = l1;
+                return mergeTwoLists(l1.next, l2, targetNode.next);
+            } else {
+                targetNode.next = l2;
+                return mergeTwoLists(l1, l2.next, targetNode.next);
+            }
         }
 
         private ListNode mergeTwoLists(ListNode l1, ListNode l2, ListNode targetNode, boolean noNextNode) {
