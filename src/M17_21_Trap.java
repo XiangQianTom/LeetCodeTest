@@ -17,7 +17,9 @@ public class M17_21_Trap {
      */
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.trap(new int[]{0, 2, 0}));
+        System.out.println(solution.trap(new int[]{0, 2, 0}));//0
+        System.out.println(solution.trap(new int[]{2, 2, 2}));//0
+        System.out.println(solution.trap(new int[]{2, 0, 2}));//2
         System.out.println(solution.trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));//6
         System.out.println(solution.trap(new int[]{4, 3, 2, 1, 0, 1, 5, 6}));//13
         System.out.println(solution.trap(new int[]{5, 7, 5, 3, 1, 1, 3, 1, 1, 1}));//4
@@ -25,7 +27,7 @@ public class M17_21_Trap {
     }
 
     static class Solution {
-        public int trap(int[] height) {
+        public int trap1(int[] height) {
             int length = height.length;
             if (length < 3) {
                 return 0;
@@ -68,6 +70,72 @@ public class M17_21_Trap {
                 sum = getSum(height, sum, rightIndex, rightStartMax, rightMax, rightMaxIndex);
                 rightIndex = rightMaxIndex;
                 rightStartMax = rightMax;
+            }
+            return sum;
+        }
+
+        public int trap2(int[] height) {
+            int length = height.length;
+            if (length < 3) {
+                return 0;
+            }
+            int sum = 0;
+            for (int i = 1; i < length - 1; i++) {
+                int leftMax = 0;
+                for (int j = 0; j < i; j++) {
+                    if (leftMax < height[j]) {
+                        leftMax = height[j];
+                    }
+                }
+                int rightMax = 0;
+                for (int j = i + 1; j < length; j++) {
+                    if (rightMax < height[j]) {
+                        rightMax = height[j];
+                    }
+                }
+                sum += Math.max(Math.min(leftMax, rightMax) - height[i], 0);
+            }
+            return sum;
+        }
+
+        public int trap3(int[] height) {
+            int length = height.length;
+            if (length < 3) {
+                return 0;
+            }
+            int[] leftArr = new int[length];
+            leftArr[0] = height[0];
+            for (int i = 1; i < length; i++) {
+                leftArr[i] = Math.max(leftArr[i - 1], height[i]);
+            }
+            int[] rightArr = new int[length];
+            rightArr[length - 1] = height[length - 1];
+            for (int i = length - 2; i >= 0; i--) {
+                rightArr[i] = Math.max(rightArr[i + 1], height[i]);
+            }
+            int sum = 0;
+            for (int i = 1; i < length - 1; i++) {
+                sum += Math.max(Math.min(leftArr[i - 1], rightArr[i + 1]) - height[i], 0);
+            }
+            return sum;
+        }
+
+        public int trap(int[] height) {
+            int length = height.length;
+            if (length < 3) {
+                return 0;
+            }
+            int sum = 0;
+            int leftMax = height[0];
+            int rightMax = height[length - 1];
+            for (int i = 0, j = length - 2; i <= j; ) {
+                if (leftMax > rightMax) {
+                    sum += Math.max(rightMax - height[j], 0);
+                    rightMax = Math.max(rightMax, height[j--]);
+                } else {
+                    sum += Math.max(leftMax - height[i], 0);
+                    leftMax = Math.max(leftMax, height[i++]);
+                }
             }
             return sum;
         }
