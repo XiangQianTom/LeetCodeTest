@@ -17,7 +17,7 @@ public class S7_IntegerInversion {
      * @param args
      */
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution solution = new S7_IntegerInversion().new Solution();
         System.out.println(solution.reverse(123));
         System.out.println(solution.reverse(-123));
         System.out.println(solution.reverse(-1));
@@ -27,31 +27,31 @@ public class S7_IntegerInversion {
         System.out.println(solution.reverse(214748366));
         System.out.println(solution.reverse(-2147483648));
     }
-}
 
-class Solution {
-    public int reverse(int x) {
-        int n = 0;
-        int temp;
-        while (x != 0) {
-            temp = n;
-            n = x % 10 + n * 10;
-            if (n / 10 != temp) return 0;
-            x /= 10;
+    class Solution {
+        public int reverse(int x) {
+            int n = 0;
+            int temp;
+            while (x != 0) {
+                temp = n;
+                n = x % 10 + n * 10;
+                if (n / 10 != temp) return 0;
+                x /= 10;
+            }
+            return n;
         }
-        return n;
-    }
 
-    public int reverse1(int x) {
-        StringBuilder sb = new StringBuilder(x + "");
-        String numStr = sb.reverse().toString().replace("-", "");
-        if (x < 0) {
-            numStr = "-" + numStr;
+        public int reverse1(int x) {
+            StringBuilder sb = new StringBuilder(x + "");
+            String numStr = sb.reverse().toString().replace("-", "");
+            if (x < 0) {
+                numStr = "-" + numStr;
+            }
+            long n = Long.parseLong(numStr);
+            if (n >= Integer.MAX_VALUE || n <= Integer.MIN_VALUE) {
+                return 0;
+            }
+            return (int) n;
         }
-        long n = Long.parseLong(numStr);
-        if (n >= Integer.MAX_VALUE || n <= Integer.MIN_VALUE) {
-            return 0;
-        }
-        return (int) n;
     }
 }
