@@ -1,10 +1,12 @@
 public class S5_LongestPalindromicSubstring {
     public static void main(String[] args) {
-        Solution solution = new S5_LongestPalindromicSubstring().new Solution();
+        Solution solution = new Solution();
         System.out.println(solution.longestPalindrome("babad"));
+        System.out.println(solution.longestPalindrome("cbbd"));
+        System.out.println(solution.longestPalindrome("abcdedcba"));
     }
 
-    class Solution {
+    static class Solution {
         public String longestPalindrome(String s) {
             int length = s.length();
             if (length < 2) {
@@ -36,6 +38,35 @@ public class S5_LongestPalindromicSubstring {
                 }
             }
             return s.substring(left, left + maxLength);
+        }
+
+
+        public String longestPalindrome2(String s) {
+            if (s == null || s.length() < 1) {
+                return "";
+            }
+            int start = 0;
+            int end = 0;
+            for (int i = 0; i < s.length(); i++) {
+                int len1 = expandAroundCenter(s, i, i);
+                int len2 = expandAroundCenter(s, i, i + 1);
+                int len = Math.max(len1, len2);
+                if (len > end - start + 1) {
+                    start = i - (len - 1) / 2;
+                    end = start + len - 1;
+                }
+            }
+            return s.substring(start, end + 1);
+        }
+
+        private int expandAroundCenter(String s, int left, int right) {
+            int len = 0;
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                len = right - left + 1;
+                left--;
+                right++;
+            }
+            return len;
         }
     }
 }
