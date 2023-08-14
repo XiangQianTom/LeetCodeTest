@@ -1,5 +1,4 @@
 import utils.TreeNode;
-import utils.TreeNodeUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,9 +31,9 @@ public class S971_FlipMatchVoyage {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(new Solution().flipMatchVoyage(TreeNodeUtils.buildTree(new Integer[]{1, 2}), new int[]{2, 1}));
-        System.out.println(new Solution().flipMatchVoyage(TreeNodeUtils.buildTree(new Integer[]{1, 2, 3}), new int[]{1, 3, 2}));
-        System.out.println(new Solution().flipMatchVoyage(TreeNodeUtils.buildTree(new Integer[]{1, 2, 3}), new int[]{1, 2, 3}));
+        System.out.println(new Solution().flipMatchVoyage(TreeNode.buildTree(new Integer[]{1, 2}), new int[]{2, 1}));
+        System.out.println(new Solution().flipMatchVoyage(TreeNode.buildTree(new Integer[]{1, 2, 3}), new int[]{1, 3, 2}));
+        System.out.println(new Solution().flipMatchVoyage(TreeNode.buildTree(new Integer[]{1, 2, 3}), new int[]{1, 2, 3}));
     }
 
     static class Solution {

@@ -1,5 +1,4 @@
 import utils.TreeNode;
-import utils.TreeNodeUtils;
 
 public class S100_IsSameTree {
     /**
@@ -33,11 +32,11 @@ public class S100_IsSameTree {
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.isSameTree(
-                TreeNodeUtils.buildTree(new Integer[]{1, 2, 3}), TreeNodeUtils.buildTree(new Integer[]{1, 2, 3})));//true
+                TreeNode.buildTree(new Integer[]{1, 2, 3}), TreeNode.buildTree(new Integer[]{1, 2, 3})));//true
         System.out.println(solution.isSameTree(
-                TreeNodeUtils.buildTree(new Integer[]{1, 2}), TreeNodeUtils.buildTree(new Integer[]{1, null, 2})));//false
+                TreeNode.buildTree(new Integer[]{1, 2}), TreeNode.buildTree(new Integer[]{1, null, 2})));//false
         System.out.println(solution.isSameTree(
-                TreeNodeUtils.buildTree(new Integer[]{1, 2, 1}), TreeNodeUtils.buildTree(new Integer[]{1, 1, 2})));//false
+                TreeNode.buildTree(new Integer[]{1, 2, 1}), TreeNode.buildTree(new Integer[]{1, 1, 2})));//false
     }
 
     static class Solution {
