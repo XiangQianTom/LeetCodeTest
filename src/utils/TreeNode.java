@@ -95,4 +95,30 @@ public class TreeNode {
         postorderTraversal(root.right);
         System.out.print(root.val + " ");
     }
+
+    public void printTree() {
+        printTree(this);
+        System.out.println();
+    }
+
+    private void printTree(TreeNode root) {
+        if (null == root) {
+            return;
+        }
+        System.out.print(root.val + " ");
+        if (null != root.left) {
+            System.out.print(root.left.val + " ");
+        }
+        if (null != root.right) {
+            System.out.print(root.right.val + " ");
+        }
+        if (null != root.left) {
+            printTree(root.left.left);
+            printTree(root.left.right);
+        }
+        if (null != root.right) {
+            printTree(root.right.left);
+            printTree(root.right.right);
+        }
+    }
 }
