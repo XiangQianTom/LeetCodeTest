@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class S242 {
+public class S242_isAnagram {
     /**
      * 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
      * 注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
