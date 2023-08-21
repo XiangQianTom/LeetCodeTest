@@ -121,4 +121,22 @@ public class TreeNode {
             printTree(root.right.right);
         }
     }
+
+    public TreeNode findTreeNode(int val) {
+        return findTreeNode(this, val);
+    }
+
+    private TreeNode findTreeNode(TreeNode treeNode, int val) {
+        if (null == treeNode) {
+            return null;
+        }
+        if (treeNode.val == val) {
+            return treeNode;
+        }
+        TreeNode left = findTreeNode(treeNode.left, val);
+        if (null != left) {
+            return left;
+        }
+        return findTreeNode(treeNode.right, val);
+    }
 }
